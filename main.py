@@ -7,7 +7,7 @@ num_random = rn
 com = True
 
 
-def ingresolibro(ingreso_arreglo_libro):
+def ingresolibro(libros):
     c = False
     while not c:
         try:
@@ -40,15 +40,15 @@ def ingresolibro(ingreso_arreglo_libro):
             c = libro.seta_public(int(input("Ingrese año de publicación (no puede ser antes de 1780): ")))
         except BaseException as error_pub:
             print(f"Error: {error_pub}")
-    return ingreso_arreglo_libro
+    return np.append(libros, libro)
 
 
-def buscarlibro(buscar_arreglo_libro):
+def buscarlibro(buscar):
     c = False
     while not c:
         codigo = input("Ingrese el codigo del libro: ")
-        for libro.codigo in arreglo_libro:
-            if codigo == libro.codigo:
+        for buscar_libro in buscar:
+            if codigo == buscar_libro.codigo:
                 print(f"Codigo:\t\t{libro.codigo}")
                 print(f"Titulo:\t\t{libro.titulo}")
                 print(f"Autor:\t\t{libro.autor}")
@@ -60,6 +60,45 @@ def buscarlibro(buscar_arreglo_libro):
                 break
             else:
                 print("El codigo no se encuentra")
+
+
+def buscarcategoria(cat):
+    categoria = ''
+    c_cat = False
+    while not c_cat:
+        print("Categoría")
+        print("1) Fantasía")
+        print("2) Acción")
+        print("3) Novela")
+        print("4) Ficcción")
+        try:
+            op_cat = int(input("Ingrese categoria (1-4): "))
+            match op_cat:
+                case 1:
+                    categoria = "Fantasía"
+                case 2:
+                    categoria = "Acción"
+                case 3:
+                    categoria = "Novela"
+                case 4:
+                    categoria = "Ficción"
+                case _:
+                    print("Opcion invalida")
+            for lib in cat:
+                if categoria == lib.categoria:
+                    print(f"Codigo:\t\t\t{libro.codigo}")
+                    print(f"Titulo:\t\t\t{libro.titulo}")
+                    print(f"Autor:\t\t\t{libro.autor}")
+                    print(f"Precio:\t\t\t{libro.precio}")
+                    print(f"País:\t\t\t{libro.pais}")
+                    print(f"Categoría:\t\t\t{libro.categoria}")
+                    print(f"Año de Publicación:\t{libro.a_public}")
+                    c_cat = True
+        except BaseException as error_cat:
+            print(f"Error: {error_cat}")
+
+
+##def imprimirinforme(arreglo_libro):
 
 
 def salir():
